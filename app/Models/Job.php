@@ -12,4 +12,16 @@ class Job extends Model
   protected $table = 'job_listings';
 
   protected $fillable = ['title', 'salary'];
+  // this tells Laravel to not guard any fields
+  // protected $guarded = [];
+
+  public function employer()
+  {
+    return $this->belongsTo(Employer::class);
+  }
+
+  public function tags()
+  {
+    return $this->belongsToMany(Tag::class, foreignPivotKey: "job_listing_id");
+  }
 }
