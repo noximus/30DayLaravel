@@ -11,7 +11,10 @@ Route::get('/', function () {
 Route::get('/jobs', function () {
     // make the SQL query before sending it to the view
     // eager loading prevents N+1 queries
-    $jobs = Job::with('employer')->get();
+    // $jobs = Job::with('employer')->paginate(3);
+    $jobs = Job::with('employer')->simplePaginate(3);
+    // this paginate is for performance but doesn't have a static URL
+    // $jobs = Job::with('employer')->cursorPaginate(3);
     
     // load the components named 'jobs' and pass it the $jobs variable
     // this is in the view folder
