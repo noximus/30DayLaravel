@@ -11,9 +11,9 @@ class Job extends Model
 
   protected $table = 'job_listings';
 
-  protected $fillable = ['title', 'salary'];
+  // protected $fillable = ['title', 'salary'];
   // this tells Laravel to not guard any fields
-  // protected $guarded = [];
+  protected $guarded = [];
 
   public function employer()
   {
