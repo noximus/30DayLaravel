@@ -5,9 +5,16 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('test', function () {
+  $job = \App\Models\Job::first();
+  \App\Jobs\TranslateJob::dispatch($job);
+  return 'Done';
+});
+
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
 
+//  Jobs Routes
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/create', [JobController::class, 'create']);
 Route::post('/jobs', [JobController::class, 'store']);
